@@ -76,7 +76,7 @@ router.post('/signup', async (req, res) => {
         res.status(201).json({ message: 'Verfication email sent to your email' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({error,message:"error while verfication send"});
+        res.status(401).json({error,message:"error while verfication send"});
     }
 });
 
