@@ -29,7 +29,6 @@ const sendVerificationEmail = async (email, token) => {
         subject: 'Verify your email',
         html: `<p>Click <a href="https://book-store-backend-two-opal.vercel.app/user/verify?token=${token}">here</a> to verify your email.</p>`,
     };
-
     await transporter.sendMail(mailOptions);
 };
 
@@ -77,7 +76,7 @@ router.post('/signup', async (req, res) => {
         res.status(201).json({ message: 'Verfication email sent to your email' });
     } catch (error) {
         console.error(error);
-        res.status(500).json(error);
+        res.status(500).json({error,message:"error while verfication send"});
     }
 });
 
