@@ -3,7 +3,7 @@ import { Book } from "../model/bookModel.js";
 
 import authMiddleware from "../middleware/authorize.js";
 const router = express.Router();
-// Postt
+// Post
 
 router.post("/", authMiddleware, async (req, res) => {
   try {
