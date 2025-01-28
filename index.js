@@ -14,6 +14,9 @@ app.use(express.json());
 app.use("/book", bookRouter);
 app.use("/user", userRouter);
 
+app.get('/',(req,res)=>{
+  return res.status(200).json('Welcom to my Book Stor #Zekayat');
+})
 const MONGODB_URL = process.env.MONGODB_URL;
 const PORT = process.env.PORT || 3000; // Fallback to 3000 if PORT is not defined
 
