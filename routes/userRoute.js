@@ -69,7 +69,7 @@ router.post('/signup', async (req, res) => {
 
         // send email verfication
 
-      // await sendVerificationEmail(email,verificationToken)
+       await sendVerificationEmail(email,verificationToken)
        
        console.log('done');
        
