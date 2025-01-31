@@ -27,7 +27,7 @@ const sendVerificationEmail = async (email, token) => {
         from: process.env.EMAIL,
         to: email,
         subject: 'Verify your email',
-        html: `<p>Click <a href="https://book-store-backend-two-opal.vercel.app/user/verify?token=${token}">here</a> to verify your email.</p>`,
+        html: `<p>Click <a href="https://frontendbook-gamma.vercel.app/user/verify?token=${token}">here</a> to verify your email.</p>`,
     };
     await transporter.sendMail(mailOptions);
 };
@@ -62,7 +62,11 @@ router.post('/signup', async (req, res) => {
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-        const verificationToken = crypto.randomBytes(32).toString("hex")
+        const verificationToken = jwt.sign(
+            { userId: user._id, isLogged: true },
+            "your_secret_key", // Use this key for development
+            { expiresIn: "1h" }
+          );
         // Save the user
         const newUser = new User({ username, password: hashedPassword, email, verificationToken });
         await newUser.save();
