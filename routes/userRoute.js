@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
-import { User } from '../model/userModel.js'; // Updated import path
+import { User } from '../model/userModel.js'; 
 
 const router = express.Router();
 
@@ -69,7 +69,7 @@ router.post('/signup', async (req, res) => {
 
         // send email verfication
 
-       await sendVerificationEmail(email,verificationToken)
+      // await sendVerificationEmail(email,verificationToken)
        
        console.log('done');
        
