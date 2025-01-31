@@ -62,14 +62,14 @@ router.post('/signup', async (req, res) => {
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-       
-        // Save the user
-        const newUser = new User({ username, password: hashedPassword, email, verificationToken });
         const token = jwt.sign(
-            { userId: newUser._id, isLogged: true },
+            {  isLogged: false },
             "your_secret_key", // Use this key for development
             { expiresIn: "1h" }
           );
+        // Save the user
+        const newUser = new User({ username, password: hashedPassword, email, verificationToken:token});
+        
         await newUser.save();
 
         // send email verfication
