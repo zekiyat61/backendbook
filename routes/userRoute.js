@@ -65,7 +65,7 @@ router.post('/signup', async (req, res) => {
        
         // Save the user
         const newUser = new User({ username, password: hashedPassword, email, verificationToken });
-        const verificationToken = jwt.sign(
+        const token = jwt.sign(
             { userId: newUser._id, isLogged: true },
             "your_secret_key", // Use this key for development
             { expiresIn: "1h" }
@@ -74,7 +74,7 @@ router.post('/signup', async (req, res) => {
 
         // send email verfication
 
-       await sendVerificationEmail(email,verificationToken)
+       await sendVerificationEmail(email,token)
        
        console.log('done');
        
